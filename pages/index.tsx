@@ -1,11 +1,20 @@
 import Link from 'next/link'
 import Layout from '../components/Layout'
-import { loadStripe } from '@stripe/stripe-js';
+import { Stripe, loadStripe } from '@stripe/stripe-js';
+import { formatAmountForStripe  } from '../utils/stripe-utils';
+
+
+let stripePromise: Promise<Stripe | null>;
+const getStripe = () => {
+  if (!stripePromise) {
+    stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+  }
+  return stripePromise;
+};
 
 
 const foo = async () => {
-  const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
-  console.log(stripe);
+  getStripe().then((stripe) => console.log(stripe));
 }
 
 const IndexPage = () => (
