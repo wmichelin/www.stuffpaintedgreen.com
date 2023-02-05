@@ -14,6 +14,7 @@ export default function Home() {
         <Header title="www.stuffpaintedgreen.com" />
         <p className="description">
           We got stuff. <code>that stuff is green.</code>
+          That stuff is <i>coming-soon</i> &#8482;
         </p>
       </main>
 
