@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import Layout from '../components/Layout'
 import { Stripe, loadStripe } from '@stripe/stripe-js';
-import { formatAmountForStripe  } from '../utils/stripe-utils';
 
 
 let stripePromise: Promise<Stripe | null>;
@@ -14,16 +13,19 @@ const getStripe = () => {
 
 
 const foo = async () => {
-  getStripe().then((stripe) => console.log(stripe));
+  getStripe().then((stripe) => {
+    window.alert(stripe);
+    console.log(stripe)}
+  );
 }
 
 const IndexPage = () => (
   <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
+    <h1>stuff painted green</h1>
     <p>
       <Link href="/about">About</Link>
     </p>
-    <button type="button" onClick={foo}>submit</button>
+    <button type="button" onClick={foo}>buy it</button>
   </Layout>
 )
 
